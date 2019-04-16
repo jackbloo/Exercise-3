@@ -1,0 +1,91 @@
+ <!DOCTYPE html>
+ <html>
+     <head>
+         <title>Exercise 3</title>
+     </head>
+<body>
+        <p>Click the button to sort the table alphabetically, by name:</p>
+        <input type="button" id="mybutton" value="sort by name">
+      
+        <table border="1" class="rTable" id="rTable">
+            <thead>
+          <tr>
+            <th>name</th>
+            <th>rotation_period</th>
+            <th>orbital_period</th>
+          </tr>
+        </thead>
+         <tbody>
+              
+          </tbody>
+        </table>
+        <script>
+        var planetsObj = [{
+            name: "Alderaan",
+            rotation_period: 24,
+            orbital_period: 364
+          },
+          {
+            name: "Yavin IV",
+            rotation_period: 24,
+            orbital_period: 4818
+          },
+          {
+            name: "Hoth",
+            rotation_period: 23,
+            orbital_period: 549
+          },
+          {
+            name: "Dagobah",
+            rotation_period: 23,
+            orbital_period: 341
+          },
+          {
+            name: "Bespin",
+            rotation_period: 12,
+            orbital_period: 5110
+          }
+        ]
+        
+        var sortID = function compare(a, b) {
+          //console.log(JSON.stringify(a))
+          if (a.name < b.name)
+            return -1;
+          if (a.name > b.name)
+            return 1;
+          
+          return 0;
+        }
+        function sort(){
+        planetsObj.sort(sortID);
+        //console.log(planetsObj);
+        var tableRef = document.getElementById('rTable').getElementsByTagName('tbody')[0];
+        for(var i= 0; i < planetsObj.length; i++){
+        // Insert a row in the table at the last row
+        var newRow   = tableRef.insertRow(tableRef.rows.length);
+        
+        // Insert a cell in the row at index 0
+        var newCell  = newRow.insertCell(0);
+        // Append a text node to the cell
+        var newText  = document.createTextNode(planetsObj[i].name);
+        newCell.appendChild(newText);
+        var newCell2  = newRow.insertCell(1);
+        
+        // Append a text node to the cell
+        var newText2  = document.createTextNode(planetsObj[i].rotation_period);
+        
+        newCell2.appendChild(newText2);
+        var newCell3  = newRow.insertCell(2);
+        
+        // Append a text node to the cell
+        var newText3  = document.createTextNode(planetsObj[i].orbital_period);
+        
+        newCell3.appendChild(newText3);
+        }
+        }
+        window.onload = function compare() {
+          document.getElementById("mybutton").addEventListener('click', sort);
+        }
+    </script>
+    </body>
+        </html>
